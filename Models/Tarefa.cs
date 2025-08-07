@@ -10,7 +10,7 @@ namespace TasksCRUD.Models
         public string? Descricao { get; set; }
         public DateTime DataVencimento { get; set; }
 
-        public StatusTarefa Status { get; set; } = StatusTarefa.NaFila;
+        public StatusTarefa Status { get; set; } = StatusTarefa.Fila;
     }
 
 }

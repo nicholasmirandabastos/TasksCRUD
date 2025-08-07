@@ -1,0 +1,53 @@
+﻿@model List<TasksCRUD.Models.Tarefa>
+
+<h2>Lista de Tarefas</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Não há tarefas cadastradas.</p>
+}
+else
+{
+    <ul>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Data de Vencimento</th>
+                    <th>Status</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    bool dentroDoPrazo = item.DataVencimento > DateTime.Now;
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Titulo</td>
+                        <td>@item.Descricao</td>
+                        <td>@item.DataVencimento.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Status</td>
+                        <td>
+                            @if (item.Status == StatusTarefa.Finalizada)
+                            {
+                                <span></span>
+                            }
+
+                            else if (dentroDoPrazo)
+                            {
+                                <button class="btn btn-success">No Prazo</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-danger">Vencida</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </ul>
+}

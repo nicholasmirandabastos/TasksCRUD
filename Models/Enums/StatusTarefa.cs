@@ -2,8 +2,8 @@
 {
     public enum StatusTarefa
     {
-        NaFila = 0,
-        EmAndamento = 1,
-        Finalizado = 2
+        Fila = 0,
+        Andamento = 1,
+        Finalizada = 2
     }
 }

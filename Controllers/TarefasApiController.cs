@@ -31,7 +31,7 @@ namespace TasksCRUD.Controllers
             if (tarefa == null)
                 return NotFound();
 
-            return Ok(tarefa);
+            return Ok(tarefa); // 200 - localizado
         }
 
         // POST: api/tarefas
@@ -56,16 +56,16 @@ namespace TasksCRUD.Controllers
 
             Console.WriteLine("Linhas afetadas: " + affectedRows);
 
-            return CreatedAtAction(nameof(GetById), new { id = tarefa.ID }, tarefa);
+            return CreatedAtAction(nameof(GetById), new { id = tarefa.ID }, tarefa); //201 - criado
         }
 
 
         // PUT: api/tarefas/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Tarefa tarefa)
+        public IActionResult Update([FromRoute] int id, Tarefa tarefa)
         {
-            if (id != tarefa.ID)
-                return BadRequest("ID mismatch");
+            //if (id != tarefa.ID)
+            //    return BadRequest("ID não encontrado");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -80,8 +80,9 @@ namespace TasksCRUD.Controllers
             existente.Status = tarefa.Status;
 
             _context.SaveChanges();
-            return NoContent();
+            return Ok(); // 200 - atualização bem sucedida
         }
+
 
         // DELETE: api/tarefas/5
         [HttpDelete("{id}")]

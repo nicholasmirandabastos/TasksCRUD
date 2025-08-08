@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TasksCRUD.Models
 {
     public class Tarefa : IValidatableObject
     {
         [Key]
+        [JsonIgnore]
         public int ID { get; set; }
 
         [Required(ErrorMessage = "O título é obrigatório.")]

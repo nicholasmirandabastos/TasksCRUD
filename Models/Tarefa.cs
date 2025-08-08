@@ -2,7 +2,7 @@
 
 namespace TasksCRUD.Models
 {
-    public class Tarefa
+    public class Tarefa : IValidatableObject
     {
         [Key]
         public int ID { get; set; }
